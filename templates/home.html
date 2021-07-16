@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblog</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="/static/microblog-logo.ico" type="image/x-icon">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar__brand">
+            <img class= "navbar__logo" src="/static/microblog-logo.svg" alt="The Microblog logo">
+        </div>
+        <ul class="navbar__navigation">
+            <li class="navbar__navigation-item"><a href="#" class="navbar__link">Home</a></li>
+            <li class="navbar__navigation-item"><a href="https://github.com/AbhishekChamp" class="navbar__link">My Github</a></li>
+        </ul>
+    </header>
+    
+    <main class="main">
+        <section>
+            <h1>Add new entry</h1>
+            <form class="form" action="/" method="POST">
+                <p class="form__input">
+                    <label for="heading" class="form__label">Entry Heading</label>
+                    <input type="text" name="title" id="heading" class="form__title" required>
+                    <label for="entry" class="form__label">Entry Contents</label>
+                    <textarea name="content" id="entry" cols="30" rows="10" class="form__textarea" required></textarea>
+                </p>
+                    <button type="submit" class="form__submit">Add Entry</button>
+            </form>
+        </section>
+    
+        <section>   
+            <h1>Recent Posts</h1>
+            {% for entry in entries %}
+            <article class="entry">
+                <div class="entry__header">
+                    <h2 class="entry__title">{{ entry[0] | truncate(30, true) }}</h2>
+                    <time class="entry__date" datetime="{{ entry[2] }}"><i class="far fa-calendar-check"></i>  {{ entry[3] }}</time>
+                </div>
+                <p class="entry__content">
+                    {{ entry[1] }}
+                </p>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer__content"> 
+            <section class="footer__left">
+                <a class="footer__item" href="https://github.com/AbhishekChamp/FrontEndPractice">Check out my Front End Practice Repo</a>
+            </section>
+            <section class="footer__right">
+                <a class="footer__item" href="https://github.com/AbhishekChamp"><i class="icon fab fa-github"></i>Github</a>
+                <a class="footer__item" href="https://twitter.com/ImAbhishek_08"><i class="icon fab fa-twitter"></i>Twitter</a>
+                <a class="footer__item" href="https://www.linkedin.com/in/abhishek-r-355434126"><i class="icon fab fa-linkedin-in"></i>LinkedIn</a>
+            </section>
+        </div>
+
+    </footer>
+</body>
+</html>

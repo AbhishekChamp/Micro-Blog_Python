@@ -10,7 +10,6 @@ def create_app():
     app = Flask(__name__)
     client = MongoClient("MONGODB_URI")
     app.db = client.microblog
-    port = int(os.environ.get('PORT'))
 
     @app.route('/', methods=["GET", "POST"])
     def home():
